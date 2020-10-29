@@ -16,7 +16,7 @@ func main() {
 	flag.Parse()
 	fmt.Println(*netp)
 	log := logrus.New()
-	uri := fmt.Sprintf("%s%d", "127.0.0.1:", *netp)
+	uri := fmt.Sprintf("%s%d", "localhost:", *netp)
 	conn, err := net.Dial("tcp", uri)
 	if err != nil {
 		log.Fatal(err)
