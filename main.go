@@ -2,6 +2,8 @@ package main
 
 import (
 	"bufio"
+	"flag"
+	"fmt"
 	"net"
 	"os"
 
@@ -10,8 +12,12 @@ import (
 )
 
 func main() {
+	netp := flag.Int("netp", 5000, "logstash connection port")
+	flag.Parse()
+	fmt.Println(*netp)
 	log := logrus.New()
-	conn, err := net.Dial("tcp", "127.0.0.1:5000")
+	uri := fmt.Sprintf("%s%d", "127.0.0.1:", *netp)
+	conn, err := net.Dial("tcp", uri)
 	if err != nil {
 		log.Fatal(err)
 	}
